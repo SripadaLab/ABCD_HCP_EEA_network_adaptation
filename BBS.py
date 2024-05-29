@@ -35,7 +35,10 @@ def BBS(X, y, covariates, fold_structure, n_nested_cv=5, n_pcs_consider=None):
         List of 2-tuples, where each tuple t_i is (training indices, held-out test indices) for cross-validation fold i. Length must be (number_of_cross_validation_folds)
         
     n_nested_cv: int
-         Number of nested cross-validation folds used for hyperparameter tuning
+        Number of nested cross-validation folds used for hyperparameter tuning
+
+    n_pcs_consider: list
+        List of hyperparameter values (number of components) evaluated in model tuning
          
        
     Returns
@@ -51,7 +54,7 @@ def BBS(X, y, covariates, fold_structure, n_nested_cv=5, n_pcs_consider=None):
     np.random.seed(42)                  # set numpy RandomState for reproducibility
     test_rs = []                        # list of length (number_of_cross_validation_folds) that will be populated with the predictive performance for each CV fold
     n_pcs_selected = []                 # list of length (number_of_cross_validation_folds) that will be populated with the number of PCs selected by nested cross-validation for each CV fold
-    if n_pcs_consider is None:          # maximum number of principal components evaluated for predictive modeling (higher means longer runtime)
+    if n_pcs_consider is None:          # list of number of principal components evaluated for predictive modeling (higher means longer runtime)
         n_pcs_consider = np.arange(min(X.shape))
     
     for train_idxs, test_idxs in fold_structure:
