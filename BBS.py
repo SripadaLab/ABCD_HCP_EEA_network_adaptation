@@ -17,8 +17,7 @@ def BBS(X, y, covariates, fold_structure, n_nested_cv=5, n_pcs_consider=None):
     This approach is similar to principal component regression with an added predictive modeling element. In a training partition, we calculate the expression scores for each of k components for each subject by projecting each subject’s connectivity matrix onto each component. We then fit a linear regression model with these expression scores as predictors and the phenotype of interest as the outcome, saving B, the k × 1 vector of fitted coefficients, for later use. In a test partition, we again calculate the expression scores for each of the k components for each subject. Our predicted phenotype for each test subject is the dot product of B learned from the training partition with the vector of component expression scores for that subject.
     
     Cross-validation is used to assess model generalizability, and nested k-fold cross-validation is used for hyperparameter tuning. There is a single hyperparameter in this model, the number of PCA components used to fit the linear regression model. Covariates are accounted for using the partial regression methodology - ie: compute the residuals of regressing the covariates against the predictors (expression scores) and response (phenotype) and fit the linear regression model using these residuals.
-    
-    
+        
     
     Parameters
     ----------
