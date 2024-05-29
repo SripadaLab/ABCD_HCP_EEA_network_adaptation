@@ -9,7 +9,7 @@ def covariate_residualization(X, covars, train_idxs):
     betas = pinv(covars[train_idxs, :]) @ X[train_idxs, :]
     return X - (covars @ betas)
 
-def BBS(X, y, covariates, fold_structure, n_nested_cv=5, n_pcs_consider=None):
+def BBS(X, y, covariates, fold_structure, n_nested_cv=5, n_pcs_consider=np.arange(5, 300, 5)):
     """
     The Brain Basis Set (BBS) predictive model was first discussed in:
     Sripada, C. et al. Basic Units of Inter-Individual Variation in Resting State Connectomes; Sci Rep 9, 1900 (2019); https://doi.org/10.1038/s41598-018-38406-5
